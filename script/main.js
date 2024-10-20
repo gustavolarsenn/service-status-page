@@ -14,8 +14,7 @@ function formatDate(datetimeString) {
   return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
 
-let CURRENT_PAGE = 0;
-let RECORDS = [];
+var CURRENT_PAGE = 0;
 const PER_PAGE = 25;
 
 function addPagination() {
@@ -50,7 +49,7 @@ async function getPaginatedRecordList() {
     }
 
     const records = await response.json();
-    RECORDS = records.items; // set the global variable with the 25 records returned from the API
+    loadDataIntoTable(records)
 
     loadDataIntoTable(RECORDS);
   } catch (error) {
