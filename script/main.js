@@ -1,4 +1,4 @@
-const pb = new PocketBase('https://hell.pockethost.io');
+// const pb = new PocketBase('https://hell.pockethost.io');
 
 function formatDate(datetimeString) {
   const date = new Date(datetimeString);
@@ -52,17 +52,18 @@ async function getPaginatedRecordList() {
     const records = await response.json();
     RECORDS = records.items; // set the global variable with the 25 records returned from the API
 
+    loadDataIntoTable(RECORDS);
   } catch (error) {
     console.error("Error fetching records:", error.message);
   }
 }
 
-function loadDataIntoTable() {
+function loadDataIntoTable(records) {
   const logTable = document.getElementById("logTable");
   const tbody = logTable.querySelector('tbody');
   tbody.innerHTML = '';
-
-  RECORDS.forEach(item => {
+  
+  records.forEach(item => {
     const row = document.createElement("tr");
 
     const idCell = document.createElement("td");
@@ -89,5 +90,12 @@ function loadDataIntoTable() {
   })
 }
 
-getPaginatedRecordList()
-loadDataIntoTable(RECORDS);
+// Chame a função para garantir que ela funcione no HTML
+if (typeof window !== 'undefined') {
+  getPaginatedRecordList();
+}
+
+// Exportar a função apenas se o módulo for importado
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { loadDataIntoTable, getPaginatedRecordList };
+}

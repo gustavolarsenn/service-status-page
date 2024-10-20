@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles/main.css">
 
   <!-- JS -->
-  <script src="script/main.js" defer></script>
+  <script src="script/main.js"defer></script>
   <script defer src="script/logChart.js"></script>
 
   <!-- ChartJS -->
@@ -34,7 +34,7 @@
   </header>
   <main>
 
-    <div>
+    <div id="logChartContainer">
       <canvas id="logChart" width="400" height="100"></canvas>
     </div>
 
@@ -111,11 +111,11 @@
   </main>
 
   <div id="paginationContainer">
-    <button class="btn" onclick="getFullRecordList('previous')">
+    <button class="btn" onclick="getPaginatedRecordList('previous')">
       <i class="ph ph-arrow-left"></i>
-      Previus
+      Previous
     </button>
-    <button class="btn" onclick="getFullRecordList('next')">
+    <button class="btn" onclick="getPaginatedRecordList('next')">
       <i class="ph ph-arrow-right"></i>
       Next
     </button>
